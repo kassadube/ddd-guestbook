@@ -8,7 +8,8 @@ namespace CleanArchitecture.Infrastructure
     {
         public void SendGuestbookNotificationEmail(string toAddress, string messageBody)
         {
-            string fromAddress = "donotreply@guestbook.com";
+            string fromAddress = "PointerFleet@pointer.com";
+            toAddress = "noams@pointer.com";
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Guestbook", fromAddress));
             message.To.Add(new MailboxAddress(toAddress, toAddress));
@@ -16,8 +17,9 @@ namespace CleanArchitecture.Infrastructure
             message.Body = new TextPart("plain") { Text = messageBody };
             using (var client = new SmtpClient())
             {
-                client.Connect("localhost", 25);
-                client.Send(message);
+               // client.
+                client.Connect("207.232.46.10", 25);
+                //client.Send(message);
                 client.Disconnect(true);
             }
 
